@@ -214,29 +214,19 @@ class Game:
             board = self.try_board()
         return board
 
-    # def show(self):
-    #     _N = 0
-    #     row0 = '  | 1 | 2 | 3 | 4 | 5 | 6 |'
-    #     row3 = row0 + '   ' + row0
-    #     print(row3)
-    #     print('-' * 27 + '   ' + '-' * 27)
-    #     for h, row1 in enumerate(self.us.board):
-    #         for k, row2 in enumerate(self.ai.board):
-    #             _N += 1
-    #             if _N == k + 1 and _N == h + 1:
-    #                 row = f'{h + 1} | {" | ".join(row1)} |   {k + 1} | {" | ".join(row2)} |'
-    #                 print(row)
-    #                 print('-' * 27 + '   ' + '-' * 27)
-    #             elif _N == 6:
-    #                 _N = 0
+    def show(self):
+        a = str(self.us.board).split('\n')
+        b = str(self.ai.board).split('\n')
+
+        print('-' * 27 + '   ' + '-' * 27)
+        for line_a1, line_a2 in zip(a, b):
+            print(line_a1 + "   " + line_a2)
+            print('-' * 27 + '   ' + '-' * 27)
 
     def loop(self):
         num = 0
         while True:
-            print('Доска игрока')
-            print(self.us.board)
-            print('Доска компьютера')
-            print(self.ai.board)
+            print(self.show())
             if num % 2 == 0:
                 print('Вы ходите!')
                 repeat = self.us.move()
